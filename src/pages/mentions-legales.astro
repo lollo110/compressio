@@ -1,0 +1,29 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { site } from "@/config/site";
+
+const title = "Mentions légales";
+const description =
+  "Mentions légales du site Compressio, éditeur, contact et informations d'hébergement à compléter avant publication.";
+---
+
+<BaseLayout title={title} description={description} canonical="/mentions-legales">
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Informations</p>
+      <h1>Mentions légales</h1>
+      <p>Les informations ci-dessous doivent être complétées avec les données réelles de l'éditeur avant mise en ligne.</p>
+    </div>
+  </section>
+  <section class="content-section">
+    <div class="container article-box">
+      <h2>Éditeur du site</h2>
+      <p>Nom ou société : à compléter.</p>
+      <p>Email : <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></p>
+      <h2>Hébergement</h2>
+      <p>Hébergeur recommandé : Netlify, Vercel ou Cloudflare Pages. Les informations légales exactes sont à ajouter selon le prestataire choisi.</p>
+      <h2>Responsabilité</h2>
+      <p>Compressio fournit des outils gratuits. L'utilisateur reste responsable de la vérification des fichiers générés.</p>
+    </div>
+  </section>
+</BaseLayout>

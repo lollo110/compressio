@@ -1,0 +1,24 @@
+---
+import type { Tool } from "@/data/tools";
+
+type Props = {
+  tool: Tool;
+};
+
+const { tool } = Astro.props;
+const href = tool.status === "available" ? `/outils/${tool.slug}` : "/outils";
+---
+
+<article class="tool-card">
+  <div class="tool-card-top">
+    <span class="pill">{tool.category}</span>
+    <span class={`status status-${tool.status}`}>
+      {tool.status === "available" ? "Disponible" : "Bientôt"}
+    </span>
+  </div>
+  <h2>{tool.title}</h2>
+  <p>{tool.description}</p>
+  <a class="text-link" href={href}>
+    {tool.status === "available" ? "Ouvrir l'outil" : "Voir les outils disponibles"}
+  </a>
+</article>

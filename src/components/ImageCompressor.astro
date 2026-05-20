@@ -1,0 +1,245 @@
+<section class="tool-panel" aria-labelledby="outil-compresseur">
+  <div class="tool-panel-header">
+    <div>
+      <p class="eyebrow">Outil gratuit</p>
+      <h2 id="outil-compresseur">Compresser une image</h2>
+      <p>
+        Importez une image, choisissez la qualité et téléchargez une version plus légère. Tout se fait dans votre navigateur.
+      </p>
+    </div>
+  </div>
+
+  <form class="compressor" id="compressor-form">
+    <label class="drop-zone" for="image-input">
+      <input id="image-input" name="images" type="file" accept="image/jpeg,image/png,image/webp" multiple />
+      <span class="drop-title">Sélectionner des images</span>
+      <span class="drop-subtitle">JPG, PNG ou WebP - jusqu'à 10 images, 12 Mo chacune</span>
+    </label>
+
+    <div class="settings-grid">
+      <label>
+        Format de sortie
+        <select id="format-select" name="format">
+          <option value="image/webp">WebP recommandé</option>
+          <option value="image/jpeg">JPG</option>
+          <option value="image/png">PNG</option>
+        </select>
+      </label>
+      <label>
+        Qualité
+        <input id="quality-input" type="range" min="35" max="95" value="78" />
+        <span class="range-value"><output id="quality-output">78</output>%</span>
+      </label>
+      <label>
+        Largeur maximale
+        <select id="width-select" name="width">
+          <option value="0">Conserver la taille</option>
+          <option value="1920">1920 px</option>
+          <option value="1600">1600 px</option>
+          <option value="1200">1200 px</option>
+          <option value="800">800 px</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="action-row">
+      <button class="button" type="submit">Compresser</button>
+      <button class="button button-secondary" id="reset-button" type="button">Réinitialiser</button>
+    </div>
+  </form>
+
+  <div class="message" id="message" role="status" aria-live="polite"></div>
+  <div class="results" id="results" aria-label="Résultats de compression"></div>
+</section>
+
+<script>
+  const form = document.querySelector("#compressor-form");
+  const input = document.querySelector("#image-input");
+  const formatSelect = document.querySelector("#format-select");
+  const qualityInput = document.querySelector("#quality-input");
+  const qualityOutput = document.querySelector("#quality-output");
+  const widthSelect = document.querySelector("#width-select");
+  const resetButton = document.querySelector("#reset-button");
+  const message = document.querySelector("#message");
+  const results = document.querySelector("#results");
+  const objectUrls = [];
+  const maxFiles = 10;
+  const maxFileSize = 12 * 1024 * 1024;
+
+  const formatExtensions = {
+    "image/webp": "webp",
+    "image/jpeg": "jpg",
+    "image/png": "png"
+  };
+
+  qualityInput?.addEventListener("input", () => {
+    qualityOutput.textContent = qualityInput.value;
+  });
+
+  resetButton?.addEventListener("click", () => {
+    clearResults();
+    form.reset();
+    qualityOutput.textContent = qualityInput.value;
+    setMessage("L'outil est prêt pour une nouvelle compression.", "neutral");
+  });
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    clearResults();
+
+    const files = Array.from(input.files || []);
+    if (files.length === 0) {
+      setMessage("Ajoutez au moins une image avant de lancer la compression.", "error");
+      return;
+    }
+
+    if (files.length > maxFiles) {
+      setMessage(`Limitez l'import à ${maxFiles} images pour garder l'outil rapide.`, "error");
+      return;
+    }
+
+    const invalidFile = files.find((file) => !file.type.startsWith("image/") || file.size > maxFileSize);
+    if (invalidFile) {
+      setMessage(`Le fichier "${invalidFile.name}" n'est pas valide ou dépasse 12 Mo.`, "error");
+      return;
+    }
+
+    setMessage("Compression en cours...", "neutral");
+
+    try {
+      const compressedFiles = [];
+      for (const file of files) {
+        compressedFiles.push(await compressImage(file));
+      }
+      renderResults(compressedFiles);
+      const savedBytes = compressedFiles.reduce((total, item) => total + item.savedBytes, 0);
+      setMessage(`Compression terminée. ${formatBytes(savedBytes)} économisés au total.`, "success");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Impossible de compresser cette image.", "error");
+    }
+  });
+
+  async function compressImage(file) {
+    const image = await loadImage(file);
+    const maxWidth = Number(widthSelect.value);
+    const scale = maxWidth > 0 && image.width > maxWidth ? maxWidth / image.width : 1;
+    const width = Math.round(image.width * scale);
+    const height = Math.round(image.height * scale);
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+
+    if (!context) {
+      throw new Error("Votre navigateur ne permet pas de traiter cette image.");
+    }
+
+    canvas.width = width;
+    canvas.height = height;
+    context.drawImage(image, 0, 0, width, height);
+
+    const outputType = formatSelect.value;
+    const quality = Number(qualityInput.value) / 100;
+    const blob = await new Promise((resolve) => {
+      canvas.toBlob(resolve, outputType, outputType === "image/png" ? undefined : quality);
+    });
+
+    if (!blob) {
+      throw new Error(`La compression de "${file.name}" a échoué.`);
+    }
+
+    const extension = formatExtensions[outputType] || "webp";
+    const fileName = file.name.replace(/\.[^.]+$/, "");
+    const url = URL.createObjectURL(blob);
+    objectUrls.push(url);
+
+    return {
+      originalName: file.name,
+      downloadName: `${fileName}-compressio.${extension}`,
+      originalSize: file.size,
+      compressedSize: blob.size,
+      savedBytes: Math.max(0, file.size - blob.size),
+      width,
+      height,
+      url
+    };
+  }
+
+  function loadImage(file) {
+    return new Promise((resolve, reject) => {
+      const url = URL.createObjectURL(file);
+      const image = new Image();
+      image.onload = () => {
+        URL.revokeObjectURL(url);
+        resolve(image);
+      };
+      image.onerror = () => {
+        URL.revokeObjectURL(url);
+        reject(new Error(`Impossible de lire "${file.name}".`));
+      };
+      image.src = url;
+    });
+  }
+
+  function renderResults(items) {
+    const fragment = document.createDocumentFragment();
+
+    items.forEach((item) => {
+      const reduction =
+        item.originalSize > 0 ? Math.round((item.savedBytes / item.originalSize) * 100) : 0;
+      const card = document.createElement("article");
+      const headingWrap = document.createElement("div");
+      const heading = document.createElement("h3");
+      const dimensions = document.createElement("p");
+      const list = document.createElement("dl");
+      const download = document.createElement("a");
+
+      card.className = "result-card";
+      heading.textContent = item.originalName;
+      dimensions.textContent = `${item.width} x ${item.height}px`;
+      headingWrap.append(heading, dimensions);
+
+      [
+        ["Avant", formatBytes(item.originalSize)],
+        ["Après", formatBytes(item.compressedSize)],
+        ["Gain", `${reduction}%`]
+      ].forEach(([label, value]) => {
+        const row = document.createElement("div");
+        const term = document.createElement("dt");
+        const detail = document.createElement("dd");
+        term.textContent = label;
+        detail.textContent = value;
+        row.append(term, detail);
+        list.append(row);
+      });
+
+      download.className = "button button-small";
+      download.href = item.url;
+      download.download = item.downloadName;
+      download.textContent = "Télécharger";
+
+      card.append(headingWrap, list, download);
+      fragment.append(card);
+    });
+
+    results.append(fragment);
+  }
+
+  function clearResults() {
+    objectUrls.splice(0).forEach((url) => URL.revokeObjectURL(url));
+    results.innerHTML = "";
+    message.textContent = "";
+    message.className = "message";
+  }
+
+  function setMessage(text, type) {
+    message.textContent = text;
+    message.className = `message message-${type}`;
+  }
+
+  function formatBytes(bytes) {
+    if (bytes <= 0) return "0 o";
+    const units = ["o", "Ko", "Mo"];
+    const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+    return `${(bytes / 1024 ** index).toFixed(index === 0 ? 0 : 1)} ${units[index]}`;
+  }
+
+</script>

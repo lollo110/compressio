@@ -1,0 +1,92 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AdSlot from "@/components/AdSlot.astro";
+import ImageCompressor from "@/components/ImageCompressor.astro";
+import { site } from "@/config/site";
+
+const title = "Compresseur d'image JPG PNG WebP gratuit";
+const description =
+  "Compressez une image JPG, PNG ou WebP en ligne gratuitement. Réduisez le poids de vos photos sans inscription et sans upload serveur.";
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Compresseur d'images Compressio",
+    applicationCategory: "MultimediaApplication",
+    operatingSystem: "Web",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "EUR"
+    },
+    url: `${site.url}/outils/compresseur-image`
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Mes images sont-elles envoyées sur un serveur ?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Non. La compression est effectuée dans votre navigateur avec canvas. Les fichiers restent sur votre appareil."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Quel format choisir pour une image web ?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "WebP est recommandé pour la plupart des usages web, car il permet souvent d'obtenir un fichier plus léger qu'un JPG ou PNG."
+        }
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout title={title} description={description} canonical="/outils/compresseur-image" structuredData={structuredData}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">JPG, PNG, WebP</p>
+      <h1>Compresseur d'image gratuit en ligne</h1>
+      <p>
+        Réduisez le poids d'une photo pour votre site, vos réseaux sociaux ou vos emails. L'outil fonctionne côté navigateur et ne nécessite aucun compte.
+      </p>
+    </div>
+  </section>
+
+  <div class="container">
+    <AdSlot label="Bannière avant l'outil" />
+  </div>
+
+  <section class="content-section">
+    <div class="container content-with-sidebar">
+      <div>
+        <ImageCompressor />
+        <AdSlot label="Sous l'outil" variant="inline" />
+      </div>
+      <AdSlot label="Sidebar desktop" variant="sidebar" />
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container article-box">
+      <h2>Pourquoi compresser une image ?</h2>
+      <p>
+        Une image trop lourde ralentit une page web, consomme plus de données mobiles et peut compliquer l'envoi par formulaire ou email. La compression réduit le poids du fichier tout en conservant une qualité suffisante pour l'affichage.
+      </p>
+      <h2>Conseils rapides</h2>
+      <ul>
+        <li>Choisissez WebP pour les images destinées au web.</li>
+        <li>Gardez une qualité entre 70 % et 85 % pour un bon équilibre.</li>
+        <li>Limitez la largeur à 1600 px ou 1200 px si l'image n'a pas besoin d'être affichée en très grand.</li>
+      </ul>
+      <h2>Confidentialité</h2>
+      <p>
+        Compressio utilise les fonctions natives du navigateur. Les images importées ne sont pas stockées par le site et ne sont pas envoyées à un serveur.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

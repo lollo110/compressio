@@ -1,0 +1,27 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const title = "Politique de confidentialité";
+const description =
+  "Politique de confidentialité de Compressio : traitement local des images, données personnelles et cookies.";
+---
+
+<BaseLayout title={title} description={description} canonical="/confidentialite">
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Confidentialité</p>
+      <h1>Politique de confidentialité</h1>
+      <p>Cette page explique comment Compressio limite la collecte de données et protège les fichiers traités.</p>
+    </div>
+  </section>
+  <section class="content-section">
+    <div class="container article-box">
+      <h2>Fichiers importés</h2>
+      <p>Le compresseur d'images fonctionne dans le navigateur. Les fichiers ne sont pas envoyés à nos serveurs.</p>
+      <h2>Données personnelles</h2>
+      <p>Le site ne demande pas de compte utilisateur. Le formulaire de contact ouvre votre client email avec les informations que vous choisissez d'envoyer.</p>
+      <h2>Publicité et cookies</h2>
+      <p>Des emplacements publicitaires sont prévus, mais aucune publicité n'est activée dans cette version. Si Google AdSense est ajouté plus tard, une gestion du consentement et des cookies devra être configurée selon la réglementation applicable.</p>
+    </div>
+  </section>
+</BaseLayout>

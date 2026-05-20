@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AdSlot from "@/components/AdSlot.astro";
+import ToolCard from "@/components/ToolCard.astro";
+import { availableTools } from "@/data/tools";
+import { site } from "@/config/site";
+
+const title = "Compresseur d'image gratuit en ligne";
+const description =
+  "Compressez vos images JPG, PNG et WebP gratuitement, sans inscription et sans envoi sur serveur. Un outil rapide pour réduire le poids de vos photos.";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.name,
+  url: site.url,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${site.url}/outils?recherche={search_term_string}`,
+    "query-input": "required name=search_term_string"
+  }
+};
+---
+
+<BaseLayout title={title} description={description} structuredData={structuredData}>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Outil image gratuit</p>
+        <h1>Compressez vos images en quelques secondes</h1>
+        <p>
+          Réduisez la taille de vos photos pour un site plus rapide, un email plus léger ou une publication plus simple. Vos fichiers restent dans votre navigateur.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="/outils/compresseur-image">Compresser une image</a>
+          <a class="button button-secondary" href="/outils">Voir les outils</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="visual-bar"><span></span><span></span><span></span></div>
+        <div class="visual-body">
+          <div class="image-preview">
+            <span class="compression-badge"><strong>-68%</strong><span>poids image</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <AdSlot label="Bannière haut de page" />
+  </div>
+
+  <section class="content-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Un outil simple pour optimiser vos images</h2>
+        <p>
+          Compressio est pensé pour les créateurs de sites, e-commerçants, étudiants et indépendants qui veulent réduire le poids d'une image sans installer de logiciel.
+        </p>
+      </div>
+      <div class="tools-grid">
+        {availableTools.map((tool) => <ToolCard tool={tool} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container info-grid">
+      <article class="info-card">
+        <h2>Rapide</h2>
+        <p>Le traitement se fait localement avec les API du navigateur, sans file d'attente serveur.</p>
+      </article>
+      <article class="info-card">
+        <h2>Privé</h2>
+        <p>Les images ne quittent pas votre appareil pendant la compression.</p>
+      </article>
+      <article class="info-card">
+        <h2>SEO friendly</h2>
+        <p>Des images plus légères améliorent l'expérience utilisateur et peuvent aider les performances web.</p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

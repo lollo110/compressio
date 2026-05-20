@@ -1,0 +1,31 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const title = "À propos";
+const description =
+  "Découvrez la mission de Compressio : proposer des outils gratuits, rapides et utiles pour optimiser images et fichiers.";
+---
+
+<BaseLayout title={title} description={description} canonical="/a-propos">
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Mission</p>
+      <h1>Des outils gratuits pour gagner du temps</h1>
+      <p>
+        Compressio aide les visiteurs à effectuer des tâches simples sans inscription, sans installation et sans interface compliquée.
+      </p>
+    </div>
+  </section>
+  <section class="content-section">
+    <div class="container article-box">
+      <h2>Pourquoi ce site existe</h2>
+      <p>
+        Beaucoup de besoins quotidiens sont simples : réduire une image, convertir un fichier, préparer un document ou vérifier une information. Compressio regroupe ces outils dans une interface claire et rapide.
+      </p>
+      <h2>Notre approche</h2>
+      <p>
+        Les premières fonctionnalités privilégient les traitements côté navigateur. Cela rend le site plus rapide, moins coûteux à héberger et plus respectueux des fichiers personnels.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

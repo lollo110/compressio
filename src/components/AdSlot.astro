@@ -1,0 +1,13 @@
+---
+type Props = {
+  label: string;
+  variant?: "banner" | "sidebar" | "inline";
+};
+
+const { label, variant = "banner" } = Astro.props;
+---
+
+<aside class={`ad-slot ad-slot-${variant}`} aria-label={`Emplacement publicitaire ${label}`}>
+  <span>Publicité</span>
+  <strong>{label}</strong>
+</aside>

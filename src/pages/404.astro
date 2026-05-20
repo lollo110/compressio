@@ -1,0 +1,17 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Page introuvable" description="La page demandée n'existe pas." noindex>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Erreur 404</p>
+      <h1>Page introuvable</h1>
+      <p>Le lien est peut-être ancien ou l'adresse contient une erreur.</p>
+      <div class="hero-actions">
+        <a class="button" href="/outils/compresseur-image">Ouvrir le compresseur</a>
+        <a class="button button-secondary" href="/">Retour à l'accueil</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

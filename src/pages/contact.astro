@@ -1,0 +1,37 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { site } from "@/config/site";
+
+const title = "Contact";
+const description =
+  "Contactez Compressio pour signaler un problème, proposer un nouvel outil ou poser une question.";
+---
+
+<BaseLayout title={title} description={description} canonical="/contact">
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Contact</p>
+      <h1>Nous contacter</h1>
+      <p>Une question, une idée d'outil ou un problème à signaler ? Envoyez un message à l'équipe.</p>
+    </div>
+  </section>
+  <section class="content-section">
+    <div class="container article-box">
+      <form class="form-grid" action={`mailto:${site.contactEmail}`} method="post" enctype="text/plain">
+        <label>
+          Nom
+          <input type="text" name="nom" autocomplete="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" autocomplete="email" required />
+        </label>
+        <label>
+          Message
+          <textarea name="message" required></textarea>
+        </label>
+        <button class="button" type="submit">Envoyer</button>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
