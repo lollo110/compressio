@@ -15,6 +15,7 @@
       <span class="drop-title">Sélectionner des images</span>
       <span class="drop-subtitle">JPG, PNG ou WebP - jusqu'à 10 images, 12 Mo chacune</span>
     </label>
+    <p class="file-summary" id="file-summary">Aucun fichier sélectionné.</p>
 
     <div class="settings-grid">
       <label>
@@ -62,6 +63,8 @@
   const resetButton = document.querySelector("#reset-button");
   const message = document.querySelector("#message");
   const results = document.querySelector("#results");
+  const dropZone = document.querySelector(".drop-zone");
+  const fileSummary = document.querySelector("#file-summary");
   const objectUrls = [];
   const maxFiles = 10;
   const maxFileSize = 12 * 1024 * 1024;
@@ -72,14 +75,39 @@
     "image/png": "png"
   };
 
+  detectAvifSupport().then((isSupported) => {
+    if (!isSupported || !formatSelect) return;
+    const option = document.createElement("option");
+    option.value = "image/avif";
+    option.textContent = "AVIF expérimental";
+    formatSelect.append(option);
+    formatExtensions["image/avif"] = "avif";
+  });
+
   qualityInput?.addEventListener("input", () => {
     qualityOutput.textContent = qualityInput.value;
+  });
+
+  input?.addEventListener("change", updateFileSummary);
+
+  ["dragenter", "dragover"].forEach((eventName) => {
+    dropZone?.addEventListener(eventName, (event) => {
+      event.preventDefault();
+      dropZone.classList.add("drop-zone-active");
+    });
+  });
+
+  ["dragleave", "drop"].forEach((eventName) => {
+    dropZone?.addEventListener(eventName, () => {
+      dropZone.classList.remove("drop-zone-active");
+    });
   });
 
   resetButton?.addEventListener("click", () => {
     clearResults();
     form.reset();
     qualityOutput.textContent = qualityInput.value;
+    updateFileSummary();
     setMessage("L'outil est prêt pour une nouvelle compression.", "neutral");
   });
 
@@ -230,6 +258,18 @@
     message.className = "message";
   }
 
+  function updateFileSummary() {
+    const files = Array.from(input.files || []);
+    if (files.length === 0) {
+      fileSummary.textContent = "Aucun fichier sélectionné.";
+      return;
+    }
+
+    const totalSize = files.reduce((total, file) => total + file.size, 0);
+    const plural = files.length > 1 ? "s" : "";
+    fileSummary.textContent = `${files.length} fichier${plural} sélectionné${plural} - ${formatBytes(totalSize)} au total.`;
+  }
+
   function setMessage(text, type) {
     message.textContent = text;
     message.className = `message message-${type}`;
@@ -240,6 +280,15 @@
     const units = ["o", "Ko", "Mo"];
     const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
     return `${(bytes / 1024 ** index).toFixed(index === 0 ? 0 : 1)} ${units[index]}`;
+  }
+
+  function detectAvifSupport() {
+    return new Promise((resolve) => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 1;
+      canvas.height = 1;
+      canvas.toBlob((blob) => resolve(Boolean(blob)), "image/avif", 0.8);
+    });
   }
 
 </script>

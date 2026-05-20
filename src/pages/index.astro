@@ -2,7 +2,9 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import AdSlot from "@/components/AdSlot.astro";
 import ToolCard from "@/components/ToolCard.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
 import { availableTools } from "@/data/tools";
+import { articles } from "@/data/articles";
 import { site } from "@/config/site";
 
 const title = "Compresseur d'image gratuit en ligne";
@@ -78,6 +80,20 @@ const structuredData = {
         <h2>SEO friendly</h2>
         <p>Des images plus légères améliorent l'expérience utilisateur et peuvent aider les performances web.</p>
       </article>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Guides pour réduire le poids de vos images</h2>
+        <p>
+          Comprenez les bons réglages avant de compresser vos photos pour un site, un email ou un formulaire en ligne.
+        </p>
+      </div>
+      <div class="article-grid">
+        {articles.slice(0, 3).map((article) => <ArticleCard article={article} />)}
+      </div>
     </div>
   </section>
 </BaseLayout>

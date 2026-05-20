@@ -1,0 +1,65 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AdSlot from "@/components/AdSlot.astro";
+import ImageCompressor from "@/components/ImageCompressor.astro";
+import { site } from "@/config/site";
+
+const title = "Convertisseur WebP gratuit en ligne";
+const description =
+  "Convertissez vos images JPG et PNG en WebP gratuitement pour réduire leur poids et accélérer vos pages web.";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Convertisseur WebP Compressio",
+  applicationCategory: "MultimediaApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "EUR"
+  },
+  url: `${site.url}/outils/convertisseur-webp`
+};
+---
+
+<BaseLayout title={title} description={description} canonical="/outils/convertisseur-webp" structuredData={structuredData}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Conversion image</p>
+      <h1>Convertisseur WebP gratuit</h1>
+      <p>
+        Transformez une image JPG, PNG ou WebP en fichier WebP plus léger. L'outil fonctionne dans votre navigateur et ne demande aucune inscription.
+      </p>
+    </div>
+  </section>
+
+  <div class="container">
+    <AdSlot label="Bannière convertisseur WebP" />
+  </div>
+
+  <section class="content-section">
+    <div class="container content-with-sidebar">
+      <div>
+        <ImageCompressor />
+        <AdSlot label="Sous le convertisseur" variant="inline" />
+      </div>
+      <AdSlot label="Sidebar WebP" variant="sidebar" />
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container article-box">
+      <h2>Pourquoi convertir une image en WebP ?</h2>
+      <p>
+        WebP est un format moderne pensé pour le web. Il permet souvent d'obtenir des images plus légères que JPG ou PNG, tout en conservant une qualité visuelle adaptée aux écrans.
+      </p>
+      <h2>Quand utiliser WebP ?</h2>
+      <p>
+        WebP est recommandé pour les blogs, portfolios, fiches produits et landing pages. Pour les documents administratifs ou certains formulaires anciens, JPG peut rester plus compatible.
+      </p>
+      <p>
+        Pour aller plus loin, lisez notre guide <a class="text-link" href="/blog/webp-ou-jpg-quel-format-choisir">WebP ou JPG : quel format choisir ?</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

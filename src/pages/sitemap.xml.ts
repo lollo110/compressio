@@ -1,10 +1,12 @@
 import type { APIRoute } from "astro";
 import { site } from "@/config/site";
 import { tools } from "@/data/tools";
+import { articles } from "@/data/articles";
 
 const staticPages = [
   "",
   "outils",
+  "blog",
   "a-propos",
   "contact",
   "confidentialite",
@@ -15,7 +17,8 @@ const staticPages = [
 export const GET: APIRoute = () => {
   const pages = [
     ...staticPages,
-    ...tools.filter((tool) => tool.status === "available").map((tool) => `outils/${tool.slug}`)
+    ...tools.filter((tool) => tool.status === "available").map((tool) => `outils/${tool.slug}`),
+    ...articles.map((article) => `blog/${article.slug}`)
   ];
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>

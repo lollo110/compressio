@@ -138,6 +138,7 @@ select {
 .content-with-sidebar,
 .footer-grid,
 .tools-grid,
+.article-grid,
 .info-grid {
   display: grid;
   gap: 24px;
@@ -162,6 +163,7 @@ select {
 .tool-panel-header p,
 .content-section p,
 .tool-card p,
+.article-card p,
 .site-footer p {
   color: var(--muted);
 }
@@ -290,11 +292,13 @@ select {
 }
 
 .tools-grid,
+.article-grid,
 .info-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .tool-card,
+.article-card,
 .info-card,
 .tool-panel,
 .article-box {
@@ -305,6 +309,7 @@ select {
 }
 
 .tool-card,
+.article-card,
 .info-card,
 .article-box {
   padding: 22px;
@@ -342,6 +347,7 @@ select {
 }
 
 .tool-card h2,
+.article-card h2,
 .info-card h2,
 .result-card h3 {
   margin: 14px 0 8px;
@@ -357,6 +363,78 @@ select {
 
 .text-link:hover {
   text-decoration: underline;
+}
+
+.article-card {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+.article-card h2,
+.article-card p {
+  margin: 0;
+}
+
+.article-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.article-hero .article-meta {
+  margin-top: 18px;
+}
+
+.article-content {
+  gap: 28px;
+}
+
+.article-content section {
+  display: grid;
+  gap: 10px;
+}
+
+.article-content h2,
+.article-content h3,
+.article-content p,
+.article-content ul {
+  margin-bottom: 0;
+}
+
+.faq-item {
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.cta-band {
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  border-radius: 8px;
+  color: #ffffff;
+  background: var(--primary);
+}
+
+.cta-band h2,
+.cta-band p {
+  margin: 0;
+  color: #ffffff;
+}
+
+.cta-band .button {
+  width: fit-content;
+  color: var(--primary);
+  border-color: #ffffff;
+  background: #ffffff;
+}
+
+.sidebar-stack {
+  display: grid;
+  gap: 18px;
 }
 
 .content-with-sidebar {
@@ -386,6 +464,17 @@ select {
   background: #f8fcfb;
   text-align: center;
   cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.drop-zone:hover,
+.drop-zone-active {
+  border-color: var(--primary);
+  background: #effaf7;
+  transform: translateY(-1px);
 }
 
 .drop-zone input {
@@ -406,6 +495,12 @@ select {
 
 .drop-subtitle {
   color: var(--muted);
+}
+
+.file-summary {
+  margin: -6px 0 0;
+  color: var(--muted);
+  font-weight: 800;
 }
 
 .settings-grid {
@@ -608,6 +703,7 @@ textarea {
   .content-with-sidebar,
   .footer-grid,
   .tools-grid,
+  .article-grid,
   .info-grid,
   .settings-grid {
     grid-template-columns: 1fr;
@@ -646,6 +742,7 @@ textarea {
 
   .tool-panel,
   .tool-card,
+  .article-card,
   .info-card,
   .article-box {
     padding: 18px;

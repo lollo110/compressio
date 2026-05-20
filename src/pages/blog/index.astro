@@ -1,0 +1,27 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+import { articles } from "@/data/articles";
+
+const title = "Guides image et optimisation web";
+const description =
+  "Guides pratiques pour compresser une image, choisir entre WebP et JPG et réduire le poids des photos pour le web ou l'email.";
+---
+
+<BaseLayout title={title} description={description} canonical="/blog">
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Guides pratiques</p>
+      <h1>Optimiser vos images simplement</h1>
+      <p>
+        Des conseils courts et actionnables pour réduire le poids des images, accélérer vos pages et éviter les fichiers trop lourds.
+      </p>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container article-grid">
+      {articles.map((article) => <ArticleCard article={article} />)}
+    </div>
+  </section>
+</BaseLayout>

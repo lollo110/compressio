@@ -24,7 +24,7 @@ export const tools: Tool[] = [
       "Convertissez rapidement des images en WebP pour accélérer vos pages web.",
     category: "Image",
     keywords: ["convertir webp", "image webp", "optimisation image"],
-    status: "planned"
+    status: "available"
   },
   {
     title: "Réducteur PDF",
