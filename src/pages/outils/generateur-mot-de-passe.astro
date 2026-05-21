@@ -1,0 +1,68 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AdSlot from "@/components/AdSlot.astro";
+import PasswordGenerator from "@/components/PasswordGenerator.astro";
+import { site } from "@/config/site";
+
+const title = "Générateur de mot de passe fort gratuit";
+const description =
+  "Générez un mot de passe fort, aléatoire et personnalisable gratuitement, directement dans votre navigateur.";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Générateur de mot de passe Compressio",
+  applicationCategory: "SecurityApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "EUR"
+  },
+  url: `${site.url}/outils/generateur-mot-de-passe`
+};
+---
+
+<BaseLayout title={title} description={description} canonical="/outils/generateur-mot-de-passe" structuredData={structuredData}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Sécurité</p>
+      <h1>Générateur de mot de passe fort</h1>
+      <p>
+        Créez un mot de passe aléatoire avec la longueur et les types de caractères de votre choix. L'outil fonctionne localement dans le navigateur.
+      </p>
+    </div>
+  </section>
+
+  <div class="container">
+    <AdSlot label="Bannière générateur de mot de passe" />
+  </div>
+
+  <section class="content-section">
+    <div class="container content-with-sidebar">
+      <div>
+        <PasswordGenerator />
+        <AdSlot label="Sous le générateur" variant="inline" />
+      </div>
+      <AdSlot label="Sidebar mot de passe" variant="sidebar" />
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container article-box">
+      <h2>Comment créer un mot de passe fort ?</h2>
+      <p>
+        Un mot de passe fort doit être long, difficile à deviner et différent pour chaque compte. Une longueur de 16 caractères ou plus est recommandée pour les usages importants.
+      </p>
+      <h2>Conseils simples</h2>
+      <ul>
+        <li>Utilisez un mot de passe unique pour chaque service.</li>
+        <li>Activez la double authentification quand c'est possible.</li>
+        <li>Stockez vos mots de passe dans un gestionnaire fiable.</li>
+      </ul>
+      <h2>Confidentialité</h2>
+      <p>
+        Le mot de passe est généré dans votre navigateur avec l'API cryptographique native. Il n'est pas envoyé à Compressio.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

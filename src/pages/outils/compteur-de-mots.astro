@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AdSlot from "@/components/AdSlot.astro";
+import WordCounter from "@/components/WordCounter.astro";
+import { site } from "@/config/site";
+
+const title = "Compteur de mots et caractères gratuit";
+const description =
+  "Comptez gratuitement les mots, caractères, phrases, paragraphes et le temps de lecture d'un texte en ligne.";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Compteur de mots Compressio",
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "EUR"
+  },
+  url: `${site.url}/outils/compteur-de-mots`
+};
+---
+
+<BaseLayout title={title} description={description} canonical="/outils/compteur-de-mots" structuredData={structuredData}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Texte et rédaction</p>
+      <h1>Compteur de mots gratuit en ligne</h1>
+      <p>
+        Analysez rapidement un texte pour connaître son nombre de mots, caractères, phrases et son temps de lecture estimé.
+      </p>
+    </div>
+  </section>
+
+  <div class="container">
+    <AdSlot label="Bannière compteur de mots" />
+  </div>
+
+  <section class="content-section">
+    <div class="container content-with-sidebar">
+      <div>
+        <WordCounter />
+        <AdSlot label="Sous le compteur de mots" variant="inline" />
+      </div>
+      <AdSlot label="Sidebar compteur" variant="sidebar" />
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container article-box">
+      <h2>À quoi sert un compteur de mots ?</h2>
+      <p>
+        Un compteur de mots aide à respecter une limite de texte pour un devoir, une description SEO, une publication, un email ou une annonce.
+      </p>
+      <h2>Pourquoi compter les caractères ?</h2>
+      <p>
+        Les titres, meta descriptions, SMS, publications sociales et formulaires imposent souvent une limite de caractères. Compter avant de publier évite les textes coupés.
+      </p>
+      <h2>Confidentialité</h2>
+      <p>
+        Le calcul se fait dans votre navigateur. Votre texte n'est pas envoyé à un serveur.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

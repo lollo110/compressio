@@ -27,6 +27,24 @@ export const tools: Tool[] = [
     status: "available"
   },
   {
+    title: "Compteur de mots",
+    slug: "compteur-de-mots",
+    description:
+      "Comptez les mots, caractères, phrases et estimez le temps de lecture d'un texte.",
+    category: "Texte",
+    keywords: ["compteur de mots", "compter caractères", "temps de lecture"],
+    status: "available"
+  },
+  {
+    title: "Générateur de mot de passe",
+    slug: "generateur-mot-de-passe",
+    description:
+      "Créez un mot de passe fort et aléatoire avec longueur, chiffres et symboles personnalisés.",
+    category: "Sécurité",
+    keywords: ["générateur mot de passe", "mot de passe fort", "password generator"],
+    status: "available"
+  },
+  {
     title: "Réducteur PDF",
     slug: "reduire-pdf",
     description:

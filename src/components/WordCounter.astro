@@ -1,0 +1,102 @@
+<section class="tool-panel" aria-labelledby="outil-compteur-mots">
+  <div class="tool-panel-header">
+    <div>
+      <p class="eyebrow">Texte gratuit</p>
+      <h2 id="outil-compteur-mots">Compter les mots et caractères</h2>
+      <p>
+        Collez un texte pour connaître instantanément le nombre de mots, caractères, phrases et le temps de lecture estimé.
+      </p>
+    </div>
+  </div>
+
+  <form class="text-tool" id="word-counter-form">
+    <label>
+      Votre texte
+      <textarea id="word-counter-input" placeholder="Collez votre texte ici..." rows="10"></textarea>
+    </label>
+    <div class="action-row">
+      <button class="button" type="button" id="copy-stats-button">Copier les statistiques</button>
+      <button class="button button-secondary" type="reset">Réinitialiser</button>
+    </div>
+  </form>
+
+  <div class="stats-grid" aria-live="polite">
+    <article><span>Mots</span><strong id="word-count">0</strong></article>
+    <article><span>Caractères</span><strong id="char-count">0</strong></article>
+    <article><span>Sans espaces</span><strong id="char-no-space-count">0</strong></article>
+    <article><span>Phrases</span><strong id="sentence-count">0</strong></article>
+    <article><span>Paragraphes</span><strong id="paragraph-count">0</strong></article>
+    <article><span>Lecture</span><strong id="reading-time">0 min</strong></article>
+  </div>
+
+  <p class="message" id="word-counter-message" role="status" aria-live="polite"></p>
+</section>
+
+<script>
+  const textInput = document.querySelector("#word-counter-input");
+  const form = document.querySelector("#word-counter-form");
+  const copyButton = document.querySelector("#copy-stats-button");
+  const message = document.querySelector("#word-counter-message");
+  const fields = {
+    words: document.querySelector("#word-count"),
+    chars: document.querySelector("#char-count"),
+    charsNoSpace: document.querySelector("#char-no-space-count"),
+    sentences: document.querySelector("#sentence-count"),
+    paragraphs: document.querySelector("#paragraph-count"),
+    readingTime: document.querySelector("#reading-time")
+  };
+
+  textInput?.addEventListener("input", updateStats);
+  form?.addEventListener("reset", () => {
+    window.setTimeout(updateStats, 0);
+    setMessage("Compteur réinitialisé.", "neutral");
+  });
+  copyButton?.addEventListener("click", async () => {
+    const stats = getStats(textInput.value);
+    const statsText = `Mots: ${stats.words}
+Caractères: ${stats.chars}
+Caractères sans espaces: ${stats.charsNoSpace}
+Phrases: ${stats.sentences}
+Paragraphes: ${stats.paragraphs}
+Temps de lecture: ${stats.readingTime}`;
+
+    try {
+      await navigator.clipboard.writeText(statsText);
+      setMessage("Statistiques copiées.", "success");
+    } catch {
+      setMessage("Impossible de copier automatiquement les statistiques.", "error");
+    }
+  });
+
+  function updateStats() {
+    const stats = getStats(textInput.value);
+    fields.words.textContent = String(stats.words);
+    fields.chars.textContent = String(stats.chars);
+    fields.charsNoSpace.textContent = String(stats.charsNoSpace);
+    fields.sentences.textContent = String(stats.sentences);
+    fields.paragraphs.textContent = String(stats.paragraphs);
+    fields.readingTime.textContent = stats.readingTime;
+  }
+
+  function getStats(text) {
+    const trimmed = text.trim();
+    const words = trimmed ? trimmed.match(/[\p{L}\p{N}'’-]+/gu)?.length || 0 : 0;
+    const sentences = trimmed ? trimmed.split(/[.!?…]+/).filter((item) => item.trim()).length : 0;
+    const paragraphs = trimmed ? trimmed.split(/\n{2,}/).filter((item) => item.trim()).length : 0;
+    const minutes = words === 0 ? 0 : Math.max(1, Math.ceil(words / 220));
+
+    return {
+      words,
+      chars: text.length,
+      charsNoSpace: text.replace(/\s/g, "").length,
+      sentences,
+      paragraphs,
+      readingTime: `${minutes} min`
+    };
+  }
+
+  function setMessage(text, type) {
+    message.textContent = text;
+    message.className = `message message-${type}`;
+  }
+</script>

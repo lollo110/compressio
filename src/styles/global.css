@@ -656,6 +656,84 @@ textarea {
   max-width: 680px;
 }
 
+.text-tool,
+.password-tool {
+  display: grid;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.text-tool label,
+.password-tool label {
+  display: grid;
+  gap: 8px;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.stats-grid article {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
+.stats-grid span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.stats-grid strong {
+  font-size: 1.55rem;
+  line-height: 1.1;
+}
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.option-grid label {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
+.option-grid input {
+  width: auto;
+}
+
+.strength-meter {
+  overflow: hidden;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--line);
+}
+
+.strength-meter span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--primary);
+  transition: width 0.18s ease;
+}
+
 .site-footer {
   margin-top: 56px;
   border-top: 1px solid var(--line);
@@ -705,6 +783,7 @@ textarea {
   .tools-grid,
   .article-grid,
   .info-grid,
+  .stats-grid,
   .settings-grid {
     grid-template-columns: 1fr;
   }
@@ -750,5 +829,9 @@ textarea {
 
   .action-row .button {
     width: 100%;
+  }
+
+  .option-grid {
+    grid-template-columns: 1fr;
   }
 }
