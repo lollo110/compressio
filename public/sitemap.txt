@@ -15,3 +15,6 @@ https://compressio-alpha.vercel.app/outils/generateur-qr-code/
 https://compressio-alpha.vercel.app/blog/comment-compresser-image-sans-perdre-qualite/
 https://compressio-alpha.vercel.app/blog/webp-ou-jpg-quel-format-choisir/
 https://compressio-alpha.vercel.app/blog/reduire-poids-photo-email/
+https://compressio-alpha.vercel.app/blog/comment-calculer-tva-facilement/
+https://compressio-alpha.vercel.app/blog/comment-creer-qr-code-gratuit/
+https://compressio-alpha.vercel.app/blog/comment-choisir-mot-de-passe-fort/

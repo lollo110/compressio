@@ -5,7 +5,14 @@ import { tools } from "@/data/tools";
 
 const title = "Tous les outils gratuits";
 const description =
-  "Découvrez les outils gratuits de Compressio pour optimiser images, PDF et fichiers web directement en ligne.";
+  "Découvrez les outils gratuits de Compressio par catégorie : image, texte, sécurité, finance et marketing.";
+const categories = [
+  { label: "Image", slug: "image" },
+  { label: "Texte", slug: "texte" },
+  { label: "Sécurité", slug: "securite" },
+  { label: "Finance", slug: "finance" },
+  { label: "Marketing", slug: "marketing" }
+];
 ---
 
 <BaseLayout title={title} description={description} canonical="/outils">
@@ -16,11 +23,28 @@ const description =
       <p>
         Une base évolutive pour regrouper des outils simples, rapides et monétisables autour de besoins recherchés.
       </p>
+      <nav class="category-nav" aria-label="Catégories d'outils">
+        {categories.map((category) => <a href={`#${category.slug}`}>{category.label}</a>)}
+      </nav>
     </div>
   </section>
+
   <section class="content-section">
-    <div class="container tools-grid">
-      {tools.map((tool) => <ToolCard tool={tool} />)}
+    <div class="container category-stack">
+      {categories.map((category) => {
+        const categoryTools = tools.filter((tool) => tool.category === category.label);
+        return (
+          <section class="tool-category" id={category.slug} aria-labelledby={`titre-${category.slug}`}>
+            <div class="section-heading">
+              <p class="eyebrow">Catégorie</p>
+              <h2 id={`titre-${category.slug}`}>{category.label}</h2>
+            </div>
+            <div class="tools-grid">
+              {categoryTools.map((tool) => <ToolCard tool={tool} />)}
+            </div>
+          </section>
+        );
+      })}
     </div>
   </section>
 </BaseLayout>

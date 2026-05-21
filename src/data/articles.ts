@@ -158,6 +158,159 @@ export const articles: Article[] = [
           "Un fichier entre 200 Ko et 1 Mo est souvent suffisant pour une consultation sur écran, selon le contenu de la photo."
       }
     ]
+  },
+  {
+    title: "Comment calculer la TVA facilement",
+    slug: "comment-calculer-tva-facilement",
+    description:
+      "Méthode simple pour calculer la TVA, passer d'un prix HT à un prix TTC et retrouver un montant HT depuis un prix TTC.",
+    publishedAt: "2026-05-21",
+    readingTime: "4 min",
+    category: "Finance",
+    intro:
+      "Le calcul de la TVA revient souvent dans les devis, factures, achats professionnels et comparaisons de prix. Avec quelques formules simples, vous pouvez passer rapidement du HT au TTC ou du TTC au HT.",
+    sections: [
+      {
+        title: "Calculer le TTC depuis un prix HT",
+        paragraphs: [
+          "Pour calculer un prix TTC, ajoutez la TVA au montant HT. Avec un taux de TVA de 20 %, un produit à 100 € HT donne 20 € de TVA et 120 € TTC.",
+          "La formule est simple : prix TTC = prix HT x (1 + taux de TVA). Pour 20 %, cela revient à multiplier par 1,20."
+        ],
+        bullets: [
+          "100 € HT avec 20 % de TVA = 120 € TTC.",
+          "100 € HT avec 10 % de TVA = 110 € TTC.",
+          "100 € HT avec 5,5 % de TVA = 105,50 € TTC."
+        ]
+      },
+      {
+        title: "Retrouver le HT depuis un prix TTC",
+        paragraphs: [
+          "Le calcul inverse consiste à diviser le prix TTC par 1 plus le taux de TVA. Pour un taux de 20 %, divisez par 1,20.",
+          "Cette méthode est utile quand vous avez un ticket, un prix affiché ou un achat TTC et que vous voulez connaître la base HT."
+        ]
+      },
+      {
+        title: "Utiliser le bon taux",
+        paragraphs: [
+          "Le taux de TVA dépend du type de produit ou de service. En France, les taux courants sont 20 %, 10 %, 5,5 % et 2,1 %.",
+          "Pour une facture officielle, vérifiez toujours le taux applicable à votre activité ou demandez confirmation à un comptable."
+        ]
+      }
+    ],
+    faq: [
+      {
+        question: "Quelle est la formule pour calculer la TVA ?",
+        answer:
+          "TVA = prix HT x taux de TVA. Le prix TTC correspond au prix HT plus le montant de TVA."
+      },
+      {
+        question: "Comment calculer le HT depuis le TTC ?",
+        answer:
+          "Divisez le prix TTC par 1 plus le taux de TVA. Pour un taux de 20 %, divisez le TTC par 1,20."
+      }
+    ]
+  },
+  {
+    title: "Comment créer un QR code gratuit",
+    slug: "comment-creer-qr-code-gratuit",
+    description:
+      "Guide pratique pour créer un QR code gratuit, choisir le bon contenu, éviter les erreurs de lisibilité et télécharger une image propre.",
+    publishedAt: "2026-05-21",
+    readingTime: "4 min",
+    category: "Marketing",
+    intro:
+      "Un QR code permet de partager rapidement une URL, un texte, un contact ou une information depuis une affiche, une carte, un menu ou une page imprimée.",
+    sections: [
+      {
+        title: "Choisir le contenu du QR code",
+        paragraphs: [
+          "Le plus souvent, un QR code contient une URL. Il peut aussi contenir un texte court, une adresse email, un numéro de téléphone ou une information de contact.",
+          "Pour un usage professionnel, privilégiez une URL courte et stable. Si l'adresse change souvent, utilisez une page intermédiaire que vous pourrez modifier plus tard."
+        ],
+        bullets: [
+          "URL de site ou landing page.",
+          "Menu de restaurant ou catalogue.",
+          "Carte de visite, affiche, flyer ou notice."
+        ]
+      },
+      {
+        title: "Garder un bon contraste",
+        paragraphs: [
+          "Un QR code doit rester facile à scanner. Le contraste entre le code et le fond est essentiel, surtout si vous l'imprimez.",
+          "Évitez les couleurs trop proches, les fonds chargés ou les tailles trop petites. Testez toujours le QR code avec plusieurs téléphones avant de le diffuser."
+        ]
+      },
+      {
+        title: "Télécharger et tester",
+        paragraphs: [
+          "Après génération, téléchargez le QR code en PNG et ouvrez-le dans son contexte final. Sur une affiche, il doit être assez grand pour être scanné à distance.",
+          "Si le QR code mène vers un site, vérifiez aussi que la page chargée est rapide et adaptée au mobile."
+        ]
+      }
+    ],
+    faq: [
+      {
+        question: "Un QR code gratuit expire-t-il ?",
+        answer:
+          "Un QR code statique n'expire pas. Il continue à fonctionner tant que le contenu qu'il contient, par exemple une URL, reste valide."
+      },
+      {
+        question: "Quelle taille choisir pour un QR code ?",
+        answer:
+          "Pour un usage web, 256 à 512 px suffit souvent. Pour l'impression, utilisez une image plus grande et testez la lisibilité."
+      }
+    ]
+  },
+  {
+    title: "Comment choisir un mot de passe fort",
+    slug: "comment-choisir-mot-de-passe-fort",
+    description:
+      "Conseils simples pour choisir un mot de passe fort, éviter les erreurs courantes et protéger ses comptes en ligne.",
+    publishedAt: "2026-05-21",
+    readingTime: "4 min",
+    category: "Sécurité",
+    intro:
+      "Un bon mot de passe doit être long, unique et difficile à deviner. La longueur compte souvent plus que la complexité apparente.",
+    sections: [
+      {
+        title: "Privilégier la longueur",
+        paragraphs: [
+          "Un mot de passe de 16 caractères ou plus est généralement plus solide qu'un mot court rempli de symboles. Plus il est long, plus il est difficile à tester automatiquement.",
+          "Pour les comptes importants, utilisez un mot de passe généré aléatoirement et stocké dans un gestionnaire fiable."
+        ],
+        bullets: [
+          "Utilisez au moins 16 caractères pour les comptes importants.",
+          "Mélangez majuscules, minuscules, chiffres et symboles.",
+          "Évitez les dates, prénoms, mots du dictionnaire et suites simples."
+        ]
+      },
+      {
+        title: "Utiliser un mot de passe unique",
+        paragraphs: [
+          "Le même mot de passe ne doit jamais être réutilisé sur plusieurs sites. Si un service est compromis, les autres comptes deviennent vulnérables.",
+          "Un gestionnaire de mots de passe permet de créer et retenir des mots de passe uniques sans effort."
+        ]
+      },
+      {
+        title: "Ajouter la double authentification",
+        paragraphs: [
+          "La double authentification ajoute une couche de protection, même si le mot de passe est découvert.",
+          "Activez-la en priorité sur vos emails, comptes bancaires, réseaux sociaux, outils professionnels et services cloud."
+        ]
+      }
+    ],
+    faq: [
+      {
+        question: "Un mot de passe généré est-il plus sûr ?",
+        answer:
+          "Oui, s'il est assez long et aléatoire. Il évite les habitudes humaines faciles à deviner."
+      },
+      {
+        question: "Faut-il changer ses mots de passe souvent ?",
+        answer:
+          "Il vaut surtout mieux utiliser des mots de passe uniques et les changer en cas de fuite ou de doute."
+      }
+    ]
   }
 ];
 

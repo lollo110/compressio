@@ -175,6 +175,31 @@ select {
   margin-top: 26px;
 }
 
+.category-nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.category-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: #ffffff;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.category-nav a:hover {
+  border-color: var(--primary);
+  background: var(--surface-soft);
+}
+
 .eyebrow {
   margin: 0 0 10px;
   color: var(--primary);
@@ -281,6 +306,15 @@ select {
 .section-heading {
   max-width: 760px;
   margin-bottom: 22px;
+}
+
+.category-stack {
+  display: grid;
+  gap: 42px;
+}
+
+.tool-category {
+  scroll-margin-top: 96px;
 }
 
 .section-heading h2,
