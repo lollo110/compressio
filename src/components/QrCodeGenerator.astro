@@ -1,0 +1,101 @@
+<section class="tool-panel" aria-labelledby="outil-qr-code">
+  <div class="tool-panel-header">
+    <div>
+      <p class="eyebrow">QR code gratuit</p>
+      <h2 id="outil-qr-code">Générer un QR code</h2>
+      <p>
+        Créez un QR code à partir d'une URL, d'un texte, d'un email ou d'un numéro de téléphone, puis téléchargez-le en PNG.
+      </p>
+    </div>
+  </div>
+
+  <form class="qr-tool" id="qr-form">
+    <label>
+      Contenu du QR code
+      <textarea id="qr-input" rows="5" placeholder="https://exemple.com">https://compressio-alpha.vercel.app</textarea>
+    </label>
+    <div class="settings-grid">
+      <label>
+        Taille
+        <select id="qr-size">
+          <option value="256">256 px</option>
+          <option value="512" selected>512 px</option>
+          <option value="768">768 px</option>
+        </select>
+      </label>
+      <label>
+        Couleur
+        <input id="qr-color" type="color" value="#12201d" />
+      </label>
+      <label>
+        Fond
+        <input id="qr-bg" type="color" value="#ffffff" />
+      </label>
+    </div>
+    <div class="action-row">
+      <button class="button" type="submit">Générer</button>
+      <a class="button button-secondary" id="download-qr" href="#" download="qr-code-compressio.png">Télécharger</a>
+    </div>
+  </form>
+
+  <div class="qr-preview" aria-live="polite">
+    <canvas id="qr-canvas" width="512" height="512"></canvas>
+  </div>
+  <p class="message message-neutral" id="qr-message" role="status" aria-live="polite"></p>
+</section>
+
+<script>
+  import QRCode from "qrcode";
+
+  const form = document.querySelector("#qr-form");
+  const input = document.querySelector("#qr-input");
+  const sizeSelect = document.querySelector("#qr-size");
+  const colorInput = document.querySelector("#qr-color");
+  const bgInput = document.querySelector("#qr-bg");
+  const canvas = document.querySelector("#qr-canvas");
+  const downloadLink = document.querySelector("#download-qr");
+  const message = document.querySelector("#qr-message");
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    await renderQr();
+  });
+  [input, sizeSelect, colorInput, bgInput].forEach((field) => {
+    field?.addEventListener("change", renderQr);
+  });
+
+  await renderQr();
+
+  async function renderQr() {
+    const value = input.value.trim();
+    if (!value) {
+      setMessage("Ajoutez une URL ou un texte avant de générer le QR code.", "error");
+      return;
+    }
+
+    const size = Number(sizeSelect.value);
+    canvas.width = size;
+    canvas.height = size;
+
+    try {
+      await QRCode.toCanvas(canvas, value, {
+        width: size,
+        margin: 2,
+        errorCorrectionLevel: "M",
+        color: {
+          dark: colorInput.value,
+          light: bgInput.value
+        }
+      });
+      downloadLink.href = canvas.toDataURL("image/png");
+      setMessage("QR code généré.", "success");
+    } catch {
+      setMessage("Impossible de générer ce QR code.", "error");
+    }
+  }
+
+  function setMessage(text, type) {
+    message.textContent = text;
+    message.className = `message message-${type}`;
+  }
+</script>

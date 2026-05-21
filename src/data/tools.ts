@@ -45,6 +45,24 @@ export const tools: Tool[] = [
     status: "available"
   },
   {
+    title: "Calculateur TVA",
+    slug: "calculateur-tva",
+    description:
+      "Calculez rapidement un prix HT, un prix TTC et le montant de TVA avec les taux français courants.",
+    category: "Finance",
+    keywords: ["calcul tva", "prix ht ttc", "calculateur tva"],
+    status: "available"
+  },
+  {
+    title: "Générateur de QR code",
+    slug: "generateur-qr-code",
+    description:
+      "Créez gratuitement un QR code à partir d'une URL ou d'un texte et téléchargez-le en PNG.",
+    category: "Marketing",
+    keywords: ["générateur qr code", "qr code gratuit", "créer qr code"],
+    status: "available"
+  },
+  {
     title: "Réducteur PDF",
     slug: "reduire-pdf",
     description:

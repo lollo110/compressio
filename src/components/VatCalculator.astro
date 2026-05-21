@@ -1,0 +1,124 @@
+<section class="tool-panel" aria-labelledby="outil-calculateur-tva">
+  <div class="tool-panel-header">
+    <div>
+      <p class="eyebrow">Finance gratuite</p>
+      <h2 id="outil-calculateur-tva">Calculer la TVA</h2>
+      <p>
+        Calculez rapidement un prix HT, un prix TTC et le montant de TVA avec les taux les plus utilisés.
+      </p>
+    </div>
+  </div>
+
+  <form class="calc-tool" id="vat-form">
+    <div class="settings-grid">
+      <label>
+        Montant
+        <input id="vat-amount" type="number" min="0" step="0.01" value="100" inputmode="decimal" />
+      </label>
+      <label>
+        Type de montant
+        <select id="vat-mode">
+          <option value="ht">Prix HT</option>
+          <option value="ttc">Prix TTC</option>
+        </select>
+      </label>
+      <label>
+        Taux de TVA
+        <select id="vat-rate">
+          <option value="20">20 %</option>
+          <option value="10">10 %</option>
+          <option value="5.5">5,5 %</option>
+          <option value="2.1">2,1 %</option>
+        </select>
+      </label>
+    </div>
+    <div class="action-row">
+      <button class="button" type="button" id="copy-vat-button">Copier le résultat</button>
+      <button class="button button-secondary" type="reset">Réinitialiser</button>
+    </div>
+  </form>
+
+  <div class="stats-grid" aria-live="polite">
+    <article><span>Prix HT</span><strong id="vat-ht">100,00 €</strong></article>
+    <article><span>TVA</span><strong id="vat-tax">20,00 €</strong></article>
+    <article><span>Prix TTC</span><strong id="vat-ttc">120,00 €</strong></article>
+  </div>
+  <p class="message message-neutral" id="vat-message" role="status" aria-live="polite"></p>
+</section>
+
+<script>
+  const amountInput = document.querySelector("#vat-amount");
+  const modeSelect = document.querySelector("#vat-mode");
+  const rateSelect = document.querySelector("#vat-rate");
+  const form = document.querySelector("#vat-form");
+  const copyButton = document.querySelector("#copy-vat-button");
+  const message = document.querySelector("#vat-message");
+  const outputs = {
+    ht: document.querySelector("#vat-ht"),
+    tax: document.querySelector("#vat-tax"),
+    ttc: document.querySelector("#vat-ttc")
+  };
+
+  [amountInput, modeSelect, rateSelect].forEach((field) => field?.addEventListener("input", updateVat));
+  [amountInput, modeSelect, rateSelect].forEach((field) => field?.addEventListener("change", updateVat));
+  form?.addEventListener("reset", () => {
+    window.setTimeout(updateVat, 0);
+    setMessage("Calculateur réinitialisé.", "neutral");
+  });
+  copyButton?.addEventListener("click", async () => {
+    const result = calculateVat();
+    const text = `Prix HT: ${formatCurrency(result.ht)}
+TVA: ${formatCurrency(result.tax)}
+Prix TTC: ${formatCurrency(result.ttc)}
+Taux: ${rateSelect.value}%`;
+
+    try {
+      await navigator.clipboard.writeText(text);
+      setMessage("Résultat copié.", "success");
+    } catch {
+      setMessage("Impossible de copier automatiquement le résultat.", "error");
+    }
+  });
+
+  updateVat();
+
+  function calculateVat() {
+    const amount = Math.max(0, Number(amountInput.value) || 0);
+    const rate = (Number(rateSelect.value) || 0) / 100;
+
+    if (modeSelect.value === "ttc") {
+      const ht = amount / (1 + rate);
+      return {
+        ht,
+        tax: amount - ht,
+        ttc: amount
+      };
+    }
+
+    const tax = amount * rate;
+    return {
+      ht: amount,
+      tax,
+      ttc: amount + tax
+    };
+  }
+
+  function updateVat() {
+    const result = calculateVat();
+    outputs.ht.textContent = formatCurrency(result.ht);
+    outputs.tax.textContent = formatCurrency(result.tax);
+    outputs.ttc.textContent = formatCurrency(result.ttc);
+  }
+
+  function formatCurrency(value) {
+    return new Intl.NumberFormat("fr-FR", {
+      style: "currency",
+      currency: "EUR"
+    }).format(value);
+  }
+
+  function setMessage(text, type) {
+    message.textContent = text;
+    message.className = `message message-${type}`;
+  }
+</script>

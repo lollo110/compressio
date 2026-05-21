@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AdSlot from "@/components/AdSlot.astro";
+import VatCalculator from "@/components/VatCalculator.astro";
+import { site } from "@/config/site";
+
+const title = "Calculateur TVA gratuit HT TTC";
+const description =
+  "Calculez gratuitement un prix HT, un prix TTC et le montant de TVA avec les taux 20 %, 10 %, 5,5 % et 2,1 %.";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Calculateur TVA Compressio",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "EUR"
+  },
+  url: `${site.url}/outils/calculateur-tva`
+};
+---
+
+<BaseLayout title={title} description={description} canonical="/outils/calculateur-tva" structuredData={structuredData}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">HT, TVA, TTC</p>
+      <h1>Calculateur TVA gratuit</h1>
+      <p>
+        Calculez un montant HT ou TTC en quelques secondes, avec les principaux taux de TVA utilisés en France.
+      </p>
+    </div>
+  </section>
+
+  <div class="container">
+    <AdSlot label="Bannière calculateur TVA" />
+  </div>
+
+  <section class="content-section">
+    <div class="container content-with-sidebar">
+      <div>
+        <VatCalculator />
+        <AdSlot label="Sous le calculateur TVA" variant="inline" />
+      </div>
+      <AdSlot label="Sidebar TVA" variant="sidebar" />
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container article-box">
+      <h2>Comment calculer la TVA ?</h2>
+      <p>
+        À partir d'un prix HT, la TVA se calcule en multipliant le montant par le taux applicable. Le prix TTC correspond au prix HT plus la TVA.
+      </p>
+      <h2>Calcul inverse depuis le TTC</h2>
+      <p>
+        Pour retrouver un prix HT depuis un montant TTC, divisez le montant TTC par 1 plus le taux de TVA. Par exemple, pour 20 %, divisez par 1,20.
+      </p>
+      <h2>Information importante</h2>
+      <p>
+        Cet outil fournit un calcul pratique. Vérifiez toujours le taux applicable à votre activité ou votre produit avec une source officielle ou votre comptable.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

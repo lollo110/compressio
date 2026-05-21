@@ -1,0 +1,68 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AdSlot from "@/components/AdSlot.astro";
+import QrCodeGenerator from "@/components/QrCodeGenerator.astro";
+import { site } from "@/config/site";
+
+const title = "Générateur de QR code gratuit";
+const description =
+  "Créez un QR code gratuit à partir d'une URL ou d'un texte, personnalisez la couleur et téléchargez l'image en PNG.";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Générateur de QR code Compressio",
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "EUR"
+  },
+  url: `${site.url}/outils/generateur-qr-code`
+};
+---
+
+<BaseLayout title={title} description={description} canonical="/outils/generateur-qr-code" structuredData={structuredData}>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">URL, texte, contact</p>
+      <h1>Générateur de QR code gratuit</h1>
+      <p>
+        Générez un QR code lisible pour une URL, un texte, une carte, un email ou une information à partager.
+      </p>
+    </div>
+  </section>
+
+  <div class="container">
+    <AdSlot label="Bannière générateur QR code" />
+  </div>
+
+  <section class="content-section">
+    <div class="container content-with-sidebar">
+      <div>
+        <QrCodeGenerator />
+        <AdSlot label="Sous le générateur QR code" variant="inline" />
+      </div>
+      <AdSlot label="Sidebar QR code" variant="sidebar" />
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container article-box">
+      <h2>À quoi sert un QR code ?</h2>
+      <p>
+        Un QR code permet d'ouvrir rapidement un lien, une page de contact, un menu, une affiche, une carte ou une information depuis un smartphone.
+      </p>
+      <h2>Conseils de lisibilité</h2>
+      <ul>
+        <li>Gardez un contraste fort entre le QR code et le fond.</li>
+        <li>Testez le QR code avec votre téléphone avant impression.</li>
+        <li>Utilisez une taille suffisante si le QR code doit être scanné de loin.</li>
+      </ul>
+      <h2>Confidentialité</h2>
+      <p>
+        Le QR code est généré dans votre navigateur. Le contenu saisi n'est pas stocké par Compressio.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

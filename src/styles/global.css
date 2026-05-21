@@ -657,14 +657,18 @@ textarea {
 }
 
 .text-tool,
-.password-tool {
+.password-tool,
+.calc-tool,
+.qr-tool {
   display: grid;
   gap: 18px;
   margin-top: 20px;
 }
 
 .text-tool label,
-.password-tool label {
+.password-tool label,
+.calc-tool label,
+.qr-tool label {
   display: grid;
   gap: 8px;
   color: var(--ink);
@@ -732,6 +736,23 @@ textarea {
   border-radius: inherit;
   background: var(--primary);
   transition: width 0.18s ease;
+}
+
+.qr-preview {
+  display: grid;
+  place-items: center;
+  margin-top: 18px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
+.qr-preview canvas {
+  width: min(100%, 320px);
+  height: auto;
+  border-radius: 8px;
+  background: #ffffff;
 }
 
 .site-footer {
