@@ -471,6 +471,41 @@ select {
   gap: 18px;
 }
 
+.related-box {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.related-card {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+  text-decoration: none;
+}
+
+.related-card:hover {
+  border-color: var(--primary);
+  background: var(--surface-soft);
+}
+
+.related-card strong {
+  color: var(--ink);
+}
+
+.related-card span {
+  color: var(--muted);
+}
+
 .content-with-sidebar {
   grid-template-columns: minmax(0, 1fr) 300px;
   align-items: start;
@@ -839,6 +874,7 @@ textarea {
   .article-grid,
   .info-grid,
   .stats-grid,
+  .related-grid,
   .settings-grid {
     grid-template-columns: 1fr;
   }

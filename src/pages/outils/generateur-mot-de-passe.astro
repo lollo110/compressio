@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import AdSlot from "@/components/AdSlot.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import PasswordGenerator from "@/components/PasswordGenerator.astro";
+import { toolGuideLinks } from "@/data/related";
 import { site } from "@/config/site";
 
 const title = "Générateur de mot de passe fort gratuit";
@@ -20,6 +22,7 @@ const structuredData = {
   },
   url: `${site.url}/outils/generateur-mot-de-passe`
 };
+const guides = toolGuideLinks["generateur-mot-de-passe"] ?? [];
 ---
 
 <BaseLayout title={title} description={description} canonical="/outils/generateur-mot-de-passe" structuredData={structuredData}>
@@ -41,6 +44,7 @@ const structuredData = {
     <div class="container content-with-sidebar">
       <div>
         <PasswordGenerator />
+        <RelatedLinks title="Guides associés" description="Apprenez à protéger vos comptes avec de meilleurs mots de passe." links={guides} />
         <AdSlot label="Sous le générateur" variant="inline" />
       </div>
       <AdSlot label="Sidebar mot de passe" variant="sidebar" />

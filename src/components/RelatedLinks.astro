@@ -1,0 +1,28 @@
+---
+import type { RelatedLink } from "@/data/related";
+
+type Props = {
+  title: string;
+  description?: string;
+  links: RelatedLink[];
+};
+
+const { title, description, links } = Astro.props;
+---
+
+{links.length > 0 && (
+  <section class="related-box" aria-labelledby={title.toLowerCase().replaceAll(" ", "-")}>
+    <div class="section-heading">
+      <h2 id={title.toLowerCase().replaceAll(" ", "-")}>{title}</h2>
+      {description && <p>{description}</p>}
+    </div>
+    <div class="related-grid">
+      {links.map((link) => (
+        <a class="related-card" href={link.href}>
+          <strong>{link.title}</strong>
+          <span>{link.description}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+)}

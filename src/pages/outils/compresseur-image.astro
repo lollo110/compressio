@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import AdSlot from "@/components/AdSlot.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import ImageCompressor from "@/components/ImageCompressor.astro";
+import { toolGuideLinks } from "@/data/related";
 import { site } from "@/config/site";
 
 const title = "Compresseur d'image JPG PNG WebP gratuit";
@@ -44,6 +46,7 @@ const structuredData = [
     ]
   }
 ];
+const guides = toolGuideLinks["compresseur-image"] ?? [];
 ---
 
 <BaseLayout title={title} description={description} canonical="/outils/compresseur-image" structuredData={structuredData}>
@@ -65,6 +68,7 @@ const structuredData = [
     <div class="container content-with-sidebar">
       <div>
         <ImageCompressor />
+        <RelatedLinks title="Guides associés" description="Améliorez vos réglages de compression avec ces guides." links={guides} />
         <AdSlot label="Sous l'outil" variant="inline" />
       </div>
       <AdSlot label="Sidebar desktop" variant="sidebar" />

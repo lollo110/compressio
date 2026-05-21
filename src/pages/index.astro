@@ -5,6 +5,7 @@ import ToolCard from "@/components/ToolCard.astro";
 import ArticleCard from "@/components/ArticleCard.astro";
 import { availableTools } from "@/data/tools";
 import { articles } from "@/data/articles";
+import { popularToolSlugs } from "@/data/related";
 import { site } from "@/config/site";
 
 const title = "Compresseur d'image gratuit en ligne";
@@ -21,6 +22,9 @@ const structuredData = {
     "query-input": "required name=search_term_string"
   }
 };
+const popularTools = popularToolSlugs
+  .map((slug) => availableTools.find((tool) => tool.slug === slug))
+  .filter(Boolean);
 ---
 
 <BaseLayout title={title} description={description} structuredData={structuredData}>
@@ -62,6 +66,20 @@ const structuredData = {
       </div>
       <div class="tools-grid">
         {availableTools.map((tool) => <ToolCard tool={tool} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Outils populaires</h2>
+        <p>
+          Les outils les plus utiles pour commencer : image, conversion WebP, calcul TVA et QR code.
+        </p>
+      </div>
+      <div class="tools-grid">
+        {popularTools.map((tool) => tool && <ToolCard tool={tool} />)}
       </div>
     </div>
   </section>

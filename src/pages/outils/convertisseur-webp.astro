@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import AdSlot from "@/components/AdSlot.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import ImageCompressor from "@/components/ImageCompressor.astro";
+import { toolGuideLinks } from "@/data/related";
 import { site } from "@/config/site";
 
 const title = "Convertisseur WebP gratuit en ligne";
@@ -20,6 +22,7 @@ const structuredData = {
   },
   url: `${site.url}/outils/convertisseur-webp`
 };
+const guides = toolGuideLinks["convertisseur-webp"] ?? [];
 ---
 
 <BaseLayout title={title} description={description} canonical="/outils/convertisseur-webp" structuredData={structuredData}>
@@ -41,6 +44,7 @@ const structuredData = {
     <div class="container content-with-sidebar">
       <div>
         <ImageCompressor />
+        <RelatedLinks title="Guides associés" description="Choisissez le bon format image avant de convertir." links={guides} />
         <AdSlot label="Sous le convertisseur" variant="inline" />
       </div>
       <AdSlot label="Sidebar WebP" variant="sidebar" />

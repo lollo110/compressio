@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import AdSlot from "@/components/AdSlot.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import QrCodeGenerator from "@/components/QrCodeGenerator.astro";
+import { toolGuideLinks } from "@/data/related";
 import { site } from "@/config/site";
 
 const title = "Générateur de QR code gratuit";
@@ -20,6 +22,7 @@ const structuredData = {
   },
   url: `${site.url}/outils/generateur-qr-code`
 };
+const guides = toolGuideLinks["generateur-qr-code"] ?? [];
 ---
 
 <BaseLayout title={title} description={description} canonical="/outils/generateur-qr-code" structuredData={structuredData}>
@@ -41,6 +44,7 @@ const structuredData = {
     <div class="container content-with-sidebar">
       <div>
         <QrCodeGenerator />
+        <RelatedLinks title="Guides associés" description="Découvrez les bonnes pratiques pour créer un QR code lisible." links={guides} />
         <AdSlot label="Sous le générateur QR code" variant="inline" />
       </div>
       <AdSlot label="Sidebar QR code" variant="sidebar" />

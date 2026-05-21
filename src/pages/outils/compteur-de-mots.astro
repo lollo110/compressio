@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import AdSlot from "@/components/AdSlot.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import WordCounter from "@/components/WordCounter.astro";
 import { site } from "@/config/site";
 
@@ -20,6 +21,13 @@ const structuredData = {
   },
   url: `${site.url}/outils/compteur-de-mots`
 };
+const guides = [
+  {
+    title: "Tous les guides Compressio",
+    description: "Retrouvez nos conseils pratiques pour optimiser images, textes et outils web.",
+    href: "/blog"
+  }
+];
 ---
 
 <BaseLayout title={title} description={description} canonical="/outils/compteur-de-mots" structuredData={structuredData}>
@@ -41,6 +49,7 @@ const structuredData = {
     <div class="container content-with-sidebar">
       <div>
         <WordCounter />
+        <RelatedLinks title="Guides associés" description="Continuez avec nos contenus pratiques." links={guides} />
         <AdSlot label="Sous le compteur de mots" variant="inline" />
       </div>
       <AdSlot label="Sidebar compteur" variant="sidebar" />
