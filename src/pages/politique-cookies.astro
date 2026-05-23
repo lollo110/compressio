@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { site } from "@/config/site";
 
 const title = "Politique cookies";
 const description =
@@ -31,17 +32,22 @@ const description =
 
       <h2>Publicité future</h2>
       <p>
-        Des emplacements publicitaires sont prévus dans l'interface afin de pouvoir ajouter Google AdSense ou une solution similaire plus tard. Si une telle solution est activée, cette politique sera mise à jour avec les informations sur les cookies publicitaires, la personnalisation des annonces et les options de consentement.
+        Des emplacements publicitaires sont prévus dans l'interface afin de pouvoir ajouter Google AdSense plus tard. Les publicités Google AdSense sont prévues mais non activées actuellement. Si une telle solution est activée, cette politique sera mise à jour avec les informations sur les cookies publicitaires, la personnalisation des annonces et les options de consentement.
       </p>
 
       <h2>Consentement</h2>
       <p>
-        Avant d'activer des cookies non essentiels, Compressio devra mettre en place un mécanisme de consentement adapté aux visiteurs concernés par la réglementation applicable.
+        Avant d'activer des cookies non essentiels, Compressio devra mettre en place un mécanisme de consentement adapté aux visiteurs situés en France ou concernés par la réglementation applicable.
       </p>
 
       <h2>Gestion du navigateur</h2>
       <p>
         Vous pouvez supprimer ou bloquer les cookies depuis les paramètres de votre navigateur. Le blocage de certains cookies peut modifier le fonctionnement de certains sites.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Pour toute question, vous pouvez écrire à <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.
       </p>
     </div>
   </section>

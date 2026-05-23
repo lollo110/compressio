@@ -4,7 +4,7 @@ import { site } from "@/config/site";
 
 const title = "Mentions légales";
 const description =
-  "Mentions légales du site Compressio : éditeur, contact, hébergement, responsabilité et informations à compléter.";
+  "Mentions légales du site Compressio : éditeur, responsable de publication, contact, hébergement et responsabilité.";
 ---
 
 <BaseLayout title={title} description={description} canonical="/mentions-legales">
@@ -13,7 +13,7 @@ const description =
       <p class="eyebrow">Informations</p>
       <h1>Mentions légales</h1>
       <p>
-        Les informations ci-dessous doivent être complétées avec les données réelles de l'éditeur avant une publication commerciale complète.
+        Informations relatives à l'éditeur, au responsable de publication et à l'hébergement du site Compressio.
       </p>
     </div>
   </section>
@@ -21,16 +21,26 @@ const description =
   <section class="content-section">
     <div class="container article-box">
       <h2>Éditeur du site</h2>
-      <p>Nom ou société : à compléter.</p>
-      <p>Adresse : à compléter si applicable.</p>
+      <p>Type d'éditeur : particulier.</p>
+      <p>Nom : Lorenzo Paolo Cilurzo.</p>
+      <p>Adresse postale : non publiée publiquement. Elle peut être communiquée sur demande légitime.</p>
       <p>Email : <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></p>
 
       <h2>Responsable de publication</h2>
-      <p>Responsable de publication : à compléter.</p>
+      <p>Responsable de publication : Lorenzo Paolo Cilurzo.</p>
+
+      <h2>Site et public ciblé</h2>
+      <p>Nom du site : {site.name}.</p>
+      <p>Domaine : <a href={site.url}>{site.url}</a>.</p>
+      <p>Pays principalement ciblé : France.</p>
 
       <h2>Hébergement</h2>
+      <p>Le site est hébergé par :</p>
       <p>
-        Le site est hébergé par Vercel Inc. Les informations précises d'hébergement et de contact doivent être complétées selon le compte et le domaine utilisés.
+        Vercel Inc.<br />
+        440 N Barranca Ave #4133<br />
+        Covina, CA 91723<br />
+        United States
       </p>
 
       <h2>Propriété intellectuelle</h2>
@@ -45,7 +55,7 @@ const description =
 
       <h2>Publicité</h2>
       <p>
-        Des emplacements publicitaires sont prévus sur certaines pages. Les publicités ne sont pas activées dans la version actuelle du site.
+        Des emplacements publicitaires sont prévus sur certaines pages afin de financer le service gratuit. Les publicités Google AdSense sont prévues mais non activées actuellement.
       </p>
     </div>
   </section>
