@@ -1,9 +1,10 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { site } from "@/config/site";
 
 const title = "Politique de confidentialité";
 const description =
-  "Politique de confidentialité de Compressio : traitement local des images, données personnelles et cookies.";
+  "Politique de confidentialité de Compressio : traitement local des fichiers, données personnelles, cookies et publicité.";
 ---
 
 <BaseLayout title={title} description={description} canonical="/confidentialite">
@@ -11,17 +12,43 @@ const description =
     <div class="container">
       <p class="eyebrow">Confidentialité</p>
       <h1>Politique de confidentialité</h1>
-      <p>Cette page explique comment Compressio limite la collecte de données et protège les fichiers traités.</p>
+      <p>
+        Compressio limite la collecte de données et privilégie les outils qui fonctionnent directement dans votre navigateur.
+      </p>
     </div>
   </section>
+
   <section class="content-section">
     <div class="container article-box">
-      <h2>Fichiers importés</h2>
-      <p>Le compresseur d'images fonctionne dans le navigateur. Les fichiers ne sont pas envoyés à nos serveurs.</p>
+      <h2>Fichiers et textes importés</h2>
+      <p>
+        Les outils principaux de Compressio fonctionnent côté navigateur. Les images, textes, mots de passe et QR codes générés ne sont pas envoyés à un serveur Compressio pour être traités.
+      </p>
+
       <h2>Données personnelles</h2>
-      <p>Le site ne demande pas de compte utilisateur. Le formulaire de contact ouvre votre client email avec les informations que vous choisissez d'envoyer.</p>
-      <h2>Publicité et cookies</h2>
-      <p>Des emplacements publicitaires sont prévus, mais aucune publicité n'est activée dans cette version. Si Google AdSense est ajouté plus tard, une gestion du consentement et des cookies devra être configurée selon la réglementation applicable.</p>
+      <p>
+        Le site ne demande pas de compte utilisateur. Le formulaire de contact utilise votre client email et transmet uniquement les informations que vous choisissez d'envoyer à {site.contactEmail}.
+      </p>
+
+      <h2>Mesure d'audience</h2>
+      <p>
+        Aucune solution d'analyse avancée n'est activée dans cette version. Si une mesure d'audience est ajoutée plus tard, cette page devra être mise à jour.
+      </p>
+
+      <h2>Publicité</h2>
+      <p>
+        Des emplacements publicitaires sont prévus, mais aucune publicité réelle n'est activée actuellement. Si Google AdSense ou une autre régie est ajoutée, des cookies ou identifiants publicitaires pourront être utilisés selon votre consentement et la réglementation applicable.
+      </p>
+
+      <h2>Cookies</h2>
+      <p>
+        Consultez la <a class="text-link" href="/politique-cookies">politique cookies</a> pour comprendre les usages actuels et futurs des cookies sur Compressio.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Pour toute question concernant cette politique, vous pouvez nous écrire à <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.
+      </p>
     </div>
   </section>
 </BaseLayout>

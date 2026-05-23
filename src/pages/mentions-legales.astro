@@ -4,7 +4,7 @@ import { site } from "@/config/site";
 
 const title = "Mentions légales";
 const description =
-  "Mentions légales du site Compressio, éditeur, contact et informations d'hébergement à compléter avant publication.";
+  "Mentions légales du site Compressio : éditeur, contact, hébergement, responsabilité et informations à compléter.";
 ---
 
 <BaseLayout title={title} description={description} canonical="/mentions-legales">
@@ -12,18 +12,41 @@ const description =
     <div class="container">
       <p class="eyebrow">Informations</p>
       <h1>Mentions légales</h1>
-      <p>Les informations ci-dessous doivent être complétées avec les données réelles de l'éditeur avant mise en ligne.</p>
+      <p>
+        Les informations ci-dessous doivent être complétées avec les données réelles de l'éditeur avant une publication commerciale complète.
+      </p>
     </div>
   </section>
+
   <section class="content-section">
     <div class="container article-box">
       <h2>Éditeur du site</h2>
       <p>Nom ou société : à compléter.</p>
+      <p>Adresse : à compléter si applicable.</p>
       <p>Email : <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></p>
+
+      <h2>Responsable de publication</h2>
+      <p>Responsable de publication : à compléter.</p>
+
       <h2>Hébergement</h2>
-      <p>Hébergeur recommandé : Netlify, Vercel ou Cloudflare Pages. Les informations légales exactes sont à ajouter selon le prestataire choisi.</p>
+      <p>
+        Le site est hébergé par Vercel Inc. Les informations précises d'hébergement et de contact doivent être complétées selon le compte et le domaine utilisés.
+      </p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>
+        Les textes, interfaces, composants et contenus publiés sur Compressio sont protégés. Toute reproduction non autorisée peut être interdite, sauf mention contraire.
+      </p>
+
       <h2>Responsabilité</h2>
-      <p>Compressio fournit des outils gratuits. L'utilisateur reste responsable de la vérification des fichiers générés.</p>
+      <p>
+        Compressio fournit des outils gratuits et des contenus informatifs. L'utilisateur reste responsable de la vérification des fichiers, calculs et résultats générés.
+      </p>
+
+      <h2>Publicité</h2>
+      <p>
+        Des emplacements publicitaires sont prévus sur certaines pages. Les publicités ne sont pas activées dans la version actuelle du site.
+      </p>
     </div>
   </section>
 </BaseLayout>

@@ -5,6 +5,7 @@ https://compressio-alpha.vercel.app/plan-du-site/
 https://compressio-alpha.vercel.app/a-propos/
 https://compressio-alpha.vercel.app/contact/
 https://compressio-alpha.vercel.app/confidentialite/
+https://compressio-alpha.vercel.app/politique-cookies/
 https://compressio-alpha.vercel.app/conditions-utilisation/
 https://compressio-alpha.vercel.app/mentions-legales/
 https://compressio-alpha.vercel.app/outils/compresseur-image/
