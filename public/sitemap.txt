@@ -1,6 +1,7 @@
 https://compressio-alpha.vercel.app/
 https://compressio-alpha.vercel.app/outils/
 https://compressio-alpha.vercel.app/blog/
+https://compressio-alpha.vercel.app/plan-du-site/
 https://compressio-alpha.vercel.app/a-propos/
 https://compressio-alpha.vercel.app/contact/
 https://compressio-alpha.vercel.app/confidentialite/
